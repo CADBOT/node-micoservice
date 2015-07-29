@@ -1,0 +1,15 @@
+database:
+  image: mongo
+  expose:
+    - "27017"
+  volumes:
+    - /var/data:/data/db
+
+api:
+  build: .
+  volumes: 
+    - .:/usr/src/app
+  ports:
+    - "3000:3000"
+  links:
+    - database
