@@ -6,7 +6,8 @@ var app = express();
 app.use(bodyParser.json());
 
 //mongoose.connect('mongodb://localhost/myapp');
-mongoose.connect('mongodb://database/myapp');
+mongoUri = process.env.mongoUri || 'mongodb://database/myapp';
+mongoose.connect(mongoUri);
 
 app.get('/users', function(req, res) {
   User.find({}, function(err, users) {
